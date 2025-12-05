@@ -1,47 +1,42 @@
 package com.example.guardiantrace
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.example.guardiantrace.ui.navigation.NavGraph
 import com.example.guardiantrace.ui.theme.GuardianTraceTheme
+import dagger.hilt.android.AndroidEntryPoint
+import net.sqlcipher.BuildConfig
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Security: Block screenshots and screen recording in production
+      //  window.setFlags(
+      //      WindowManager.LayoutParams.FLAG_SECURE,
+       //     WindowManager.LayoutParams.FLAG_SECURE
+       // )
+
         enableEdgeToEdge()
+
         setContent {
             GuardianTraceTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    NavGraph()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    GuardianTraceTheme {
-        Greeting("Android")
     }
 }
