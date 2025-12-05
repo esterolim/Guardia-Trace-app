@@ -124,4 +124,7 @@ export** for legal or safety purposes.
 <img src="assets/screens/settings.png" width="300" alt="Settings Screen"/>
 <img src="assets/screens/settings%20%282%29.png" width="300" alt="Settings Details"/>
 
+### Incident Details
+<img src="assets/screens/incident%20details.png" width="300" alt="Incident Details Screen"/>
+
 </div>
