@@ -98,6 +98,7 @@ export** for legal or safety purposes.
 ## **App Screenshots**
 
 <div style="display: flex; flex-direction: column; gap: 20px;">
+
 ### Authentication
 <img src="assets/screens/auth.png" width="300" alt="Authentication Screen"/>
 
