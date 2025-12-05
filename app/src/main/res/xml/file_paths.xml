@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+        File paths configuration for FileProvider
+        Used for secure file sharing between app components
+    -->
+
+    <!-- Internal app files directory -->
+    <files-path
+        name="internal_files"
+        path="." />
+
+    <!-- Encrypted evidence files -->
+    <files-path
+        name="encrypted_files"
+        path="encrypted/" />
+
+    <!-- Temporary files for processing -->
+    <cache-path
+        name="temp_files"
+        path="temp/" />
+
+    <!-- Cache directory -->
+    <cache-path
+        name="cache"
+        path="." />
+
+    <!-- External files directory -->
+    <external-files-path
+        name="external_files"
+        path="." />
+
+    <!-- External cache directory -->
+    <external-cache-path
+        name="external_cache"
+        path="." />
+
+    <!-- Exported evidence files -->
+    <external-files-path
+        name="exports"
+        path="exports/" />
+</paths>
