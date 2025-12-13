@@ -22,7 +22,7 @@ import com.example.guardiantrace.data.local.entity.IncidentEntity
 abstract class GuardianTraceDatabase : RoomDatabase() {
 
     abstract fun incidentDao(): IncidentDao
-    abstract fun attachmentDao(): AttachmentDao,
+    abstract fun attachmentDao(): AttachmentDao
     abstract fun emergencyContactDao(): EmergencyContactDao
 
     companion object {

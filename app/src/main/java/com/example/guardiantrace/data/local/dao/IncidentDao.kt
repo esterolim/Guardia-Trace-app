@@ -8,6 +8,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import com.example.guardiantrace.data.local.entity.IncidentEntity
+import com.example.guardiantrace.data.local.relation.IncidentWithAttachments
 import kotlinx.coroutines.flow.Flow
 
 
