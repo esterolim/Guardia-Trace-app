@@ -8,14 +8,22 @@ interface IncidentRepository {
 
     suspend fun createIncident(incident: Incident): Result<Long>
 
-    fun getAllIncidents(): Result<List<Incident>>
+    fun getAllIncidents(): Flow<List<Incident>>
+
+    suspend fun getIncidentById(id: Long): Result<Incident?>
 
     suspend fun updateIncident(incident: Incident): Result<Unit>
 
     suspend fun deleteIncident(incidentId: Long): Result<Unit>
 
+    fun searchIncidents(query: String): Flow<List<Incident>>
+
     fun getIncidentByDateRange(
         startDate: Long,
         endDate: Long
     ): Flow<List<Incident>>
+
+    fun getIncidentCount(): Flow<Int>
+
+    fun getIncidentsWithLocation(): Flow<List<Incident>>
 }

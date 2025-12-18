@@ -6,7 +6,8 @@ data class EmergencyContact(
     val phoneNumber: String,
     val email: String? = null,
     val isActive: Boolean = true,
-    val priority: Int = 1
+    val priority: Int = 1,
+    val relationship: String
 ) {
     fun isValid(): Boolean {
         return name.isNotBlank() && phoneNumber.isNotBlank()

@@ -1,5 +1,7 @@
 package com.example.guardiantrace.domain.repository
 
+import kotlinx.coroutines.flow.Flow
+
 interface SecurityRepository {
 
     suspend fun validatePin(pin: String): Result<Boolean>
@@ -8,7 +10,7 @@ interface SecurityRepository {
 
     suspend fun isPinConfigured(): Result<Boolean>
 
-    suspend fun isBiometricEnabled(): Result<Boolean>
+    suspend fun isBiometricEnabled(): Flow<Boolean>
 
     suspend fun setBiometricEnabled(enabled: Boolean): Result<Unit>
 

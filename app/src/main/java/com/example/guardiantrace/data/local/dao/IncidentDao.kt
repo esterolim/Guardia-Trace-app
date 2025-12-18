@@ -28,7 +28,7 @@ interface IncidentDao {
     suspend fun softDelete(incidentId: Long, timestamp: Long)
 
     @Query("SELECT * FROM incidents WHERE is_deleted = 0 ORDER BY timestamp DESC")
-    suspend fun getAllActiveIncidents(): Flow<List<IncidentEntity>>
+    fun getAllIncidents(): Flow<List<IncidentEntity>>
 
     @Query("SELECT * FROM incidents WHERE id = :incidentId AND is_deleted = 0")
     fun getIncidentByIdFlow(incidentId: Long): Flow<IncidentEntity?>

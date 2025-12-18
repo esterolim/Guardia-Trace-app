@@ -10,7 +10,8 @@ data class Attachment(
     val fileSize: Long,
     val sha256Hash: String,
     val createdAt: LocalDateTime = LocalDateTime.now(),
-    val metadata: Map<String, String> = emptyMap()
+    val metadata: Map<String, String> = emptyMap(),
+    val mimeType: String,
 ) {
     fun isValid(): Boolean {
         return fileName.isNotBlank() &&

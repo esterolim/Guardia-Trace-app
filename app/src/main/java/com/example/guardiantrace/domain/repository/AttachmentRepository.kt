@@ -7,14 +7,16 @@ import java.io.File
 interface AttachmentRepository {
 
     suspend fun addAttachment(
-        incident: Long,
+        incidentId: Long,
         file: File,
-        fileName: String,
+        fileName: String
     ): Result<Attachment>
 
-    fun getAttachmentByIncidentId(incidentId: Long): Flow<List<Attachment>>
+    suspend fun getAttachmentByIncidentId(incidentId: Long): Flow<List<Attachment>>
 
-    suspend fun getAttachmentById(id: Long): Result<Attachment>
+    suspend fun getAttachmentById(attachmentId: Long): Result<Attachment?>
+
+    suspend fun decryptAttachment(attachment: Attachment): Result<File>
 
     suspend fun deleteAttachment(id: Long): Result<Unit>
 

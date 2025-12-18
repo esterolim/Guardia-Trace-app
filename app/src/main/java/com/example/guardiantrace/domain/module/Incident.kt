@@ -11,7 +11,8 @@ data class Incident(
     val longitude: Double? = null,
     val createdAt: LocalDateTime = LocalDateTime.now(),
     val updatedAt: LocalDateTime = LocalDateTime.now(),
-    val isDeleted: Boolean = false
+    val isDeleted: Boolean = false,
+    val address: String?,
 ) {
     fun isValid(): Boolean {
         return title.isNotBlank() && description.isNotBlank()

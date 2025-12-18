@@ -18,9 +18,9 @@ class HashingManager @Inject constructor() {
         return sha26(data.toByteArray(Charsets.UTF_8))
     }
 
-    fun verifyHash(data: String, hash: String): Boolean {
-        val actualHash = sha256(data)
-        return actualHash.equals(hash, ignoreCase = true)
+    fun verifyHash(data: ByteArray, expectedHash: String): Boolean {
+        val actualHash = sha256(data.toString())
+        return actualHash.equals(expectedHash, ignoreCase = true)
     }
 
     fun hashFile(fileBytes: ByteArray): String {

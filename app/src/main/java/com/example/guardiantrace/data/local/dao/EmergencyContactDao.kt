@@ -31,7 +31,7 @@ interface EmergencyContactDao {
     suspend fun getContactByPhoneNumber(phoneNumber: String): EmergencyContactEntity?
 
     @Query("SELECT COUNT(*) FROM emergency_contacts WHERE is_active = 1")
-    suspend fun getActiveContactCount(): Flow<Int>
+    fun getActiveContactCount(): Flow<Int>
 
     @Query("UPDATE emergency_contacts SET priority = :priority, updated_at = :timestamp WHERE id = :contactId")
     suspend fun updateContactPriority(contactId: Long, priority: Int, timestamp: Long)

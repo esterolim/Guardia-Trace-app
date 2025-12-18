@@ -33,6 +33,9 @@ interface AttachmentDao {
     @Query("SELECT COUNT(*) FROM attachments WHERE incident_id = :incidentId")
     fun getAttachmentCount(incidentId: Long): Flow<Int>
 
+    @Query("SELECT * FROM attachments WHERE id = :attachmentId")
+    suspend fun getAttachmentById(attachmentId: Long): AttachmentEntity?
+
     @Query("SELECT COUNT(*) FROM attachments")
     fun getTotalAttachmentCount(): Flow<Int>
 
