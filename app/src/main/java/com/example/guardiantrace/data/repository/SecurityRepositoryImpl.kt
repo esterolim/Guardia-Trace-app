@@ -16,7 +16,6 @@ import com.example.guardiantrace.data.security.SecureSharedPreferencesWrapper
 import com.example.guardiantrace.domain.repository.SecurityRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton

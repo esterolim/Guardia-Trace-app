@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import com.example.guardiantrace.ui.navigation.NavGraph
 import com.example.guardiantrace.ui.theme.GuardianTraceTheme
 import dagger.hilt.android.AndroidEntryPoint
-import net.sqlcipher.BuildConfig
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -20,11 +19,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Security: Block screenshots and screen recording in production
-      //  window.setFlags(
-      //      WindowManager.LayoutParams.FLAG_SECURE,
-       //     WindowManager.LayoutParams.FLAG_SECURE
-       // )
+        // Security: Block screenshots and screen recording to prevent data exposure
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
 
         enableEdgeToEdge()
 

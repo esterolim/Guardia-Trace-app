@@ -1,11 +1,11 @@
 package com.example.guardiantrace.di
 
 import android.content.Context
+import com.example.guardiantrace.data.encryption.EncryptionManager
 import com.example.guardiantrace.data.security.IntegrityChecker
-import com.example.guardiantrace.data.security.SecurityPolicyEnforcer
 import com.example.guardiantrace.data.security.ScreenRecordingDetector
 import com.example.guardiantrace.data.security.SecureSharedPreferencesWrapper
-import com.example.guardiantrace.data.security.EncryptionManager
+import com.example.guardiantrace.data.security.SecurityPolicyEnforcer
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

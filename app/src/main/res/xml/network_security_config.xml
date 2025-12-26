@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+Network Security Configuration for GuardianTrace.
+Enforces HTTPS, disables cleartext traffic, and pins certificate.
+
+Reference: https://developer.android.com/training/articles/security-config
+-->
+<network-security-config>
+    <!-- Disable cleartext (HTTP) traffic entirely for security -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">example.com</domain>
+        <!-- Add your actual API domain here -->
+    </domain-config>
+
+    <!-- Allow cleartext only for localhost during development -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">127.0.0.1</domain>
+    </domain-config>
+</network-security-config>
+

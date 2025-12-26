@@ -2,18 +2,13 @@ package com.example.guardiantrace.data.security
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
-/**
- * Wrapper for EncryptedSharedPreferences providing secure storage of sensitive preferences.
- *
- * Automatically encrypts/decrypts all data at rest using AndroidKeyStore.
- * Follows OWASP Mobile Security Guidelines for sensitive data storage.
- */
 @Singleton
 class SecureSharedPreferencesWrapper @Inject constructor(
     @ApplicationContext private val context: Context
@@ -46,7 +41,7 @@ class SecureSharedPreferencesWrapper @Inject constructor(
      * Stores encrypted PIN hash
      */
     fun setPinHash(pinHash: String) {
-        encryptedPrefs.edit().putString(PIN_KEY, pinHash).apply()
+        encryptedPrefs.edit { putString(PIN_KEY, pinHash) }
     }
 
     /**
@@ -60,7 +55,7 @@ class SecureSharedPreferencesWrapper @Inject constructor(
      * Stores biometric enabled status
      */
     fun setBiometricEnabled(enabled: Boolean) {
-        encryptedPrefs.edit().putBoolean(BIOMETRIC_ENABLED_KEY, enabled).apply()
+        encryptedPrefs.edit { putBoolean(BIOMETRIC_ENABLED_KEY, enabled) }
     }
 
     /**
@@ -74,7 +69,7 @@ class SecureSharedPreferencesWrapper @Inject constructor(
      * Stores device ID for integrity checks
      */
     fun setDeviceId(deviceId: String) {
-        encryptedPrefs.edit().putString(DEVICE_ID_KEY, deviceId).apply()
+        encryptedPrefs.edit { putString(DEVICE_ID_KEY, deviceId) }
     }
 
     /**
@@ -89,7 +84,7 @@ class SecureSharedPreferencesWrapper @Inject constructor(
      */
     fun putString(key: String, value: String) {
         if (isValidKey(key)) {
-            encryptedPrefs.edit().putString(key, value).apply()
+            encryptedPrefs.edit { putString(key, value) }
         } else {
             throw IllegalArgumentException("Invalid preference key: $key")
         }
@@ -107,7 +102,7 @@ class SecureSharedPreferencesWrapper @Inject constructor(
      */
     fun putInt(key: String, value: Int) {
         if (isValidKey(key)) {
-            encryptedPrefs.edit().putInt(key, value).apply()
+            encryptedPrefs.edit { putInt(key, value) }
         } else {
             throw IllegalArgumentException("Invalid preference key: $key")
         }
@@ -125,7 +120,7 @@ class SecureSharedPreferencesWrapper @Inject constructor(
      */
     fun putLong(key: String, value: Long) {
         if (isValidKey(key)) {
-            encryptedPrefs.edit().putLong(key, value).apply()
+            encryptedPrefs.edit { putLong(key, value) }
         } else {
             throw IllegalArgumentException("Invalid preference key: $key")
         }
@@ -143,7 +138,7 @@ class SecureSharedPreferencesWrapper @Inject constructor(
      */
     fun putBoolean(key: String, value: Boolean) {
         if (isValidKey(key)) {
-            encryptedPrefs.edit().putBoolean(key, value).apply()
+            encryptedPrefs.edit { putBoolean(key, value) }
         } else {
             throw IllegalArgumentException("Invalid preference key: $key")
         }
@@ -160,14 +155,14 @@ class SecureSharedPreferencesWrapper @Inject constructor(
      * Removes a preference
      */
     fun remove(key: String) {
-        encryptedPrefs.edit().remove(key).apply()
+        encryptedPrefs.edit { remove(key) }
     }
 
     /**
      * Clears all preferences
      */
     fun clear() {
-        encryptedPrefs.edit().clear().apply()
+        encryptedPrefs.edit { clear() }
     }
 
     /**
