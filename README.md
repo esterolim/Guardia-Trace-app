@@ -1,130 +1,258 @@
 # Guardian Trace - Stalking & Harassment Evidence Recorder
 
-## **Project Overview**
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Kotlin](https://img.shields.io/badge/kotlin-2.0.21-purple)
+![Min API](https://img.shields.io/badge/minAPI-26-green)
+![Target API](https://img.shields.io/badge/targetAPI-36-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
-Guardian Trace empowers users to safely record incidents of stalking or online harassment. The app
-includes **emergency capture**, **stealth mode**, **secure encrypted storage**, and **fast evidence
-export** for legal or safety purposes.
+**Guardian Trace** empowers users to safely record incidents of stalking or online harassment with military-grade encryption, stealth capabilities, and emergency SOS features. All evidence is protected, encrypted at rest, and designed for legal use.
 
-## **Development Stages**
+## 🎯 Key Features
 
-### **1. Concept & Objectives**
+### 🛡️ Security-First Design
+- **AES-256-GCM Encryption**: Military-grade encryption for all sensitive data
+- **SQLCipher Database**: Encrypted database with 100k PBKDF2 iterations
+- **AndroidKeyStore Integration**: Hardware-backed key storage
+- **Secure Credential Management**: PIN + Biometric authentication
+- **Memory Zeroing**: Automatic clearing of sensitive data from memory
+- **FLAG_SECURE**: Prevents screenshots and screen recording in production
 
-* Define the main purpose: protecting users by gathering and securing harassment evidence.
-* Prioritize privacy, stealth, and emergency usability.
-* Identify user scenarios and risk contexts.
+### 📱 Emergency Capture
+- Quick-tap emergency capture of screenshots, photos, or video
+- One-touch SOS with emergency contact alerts
+- Automatic location logging with timestamps
+- Background event monitoring (with user consent)
 
----
+### 👻 Stealth Mode
+- Disguised app icon and appearance
+- Hidden notification handling
+- Configurable stealth behaviors
+- Private file storage with encryption
 
-### **2. Core Features**
+### 💾 Evidence Management
+- Organize incidents by type (harassment, stalking, threat)
+- Add attachments (photos, videos, audio, documents)
+- Automatic metadata preservation
+- Secure file export with integrity verification
 
-* **Emergency Capture:** Quick-save screenshots, recordings, or text logs.
-* **Encrypted Storage:** Evidence stored in a secure Room database using encryption.
-* **Stealth Mode:** Mask the app's appearance and hide sensitive actions.
-* **SOS Function:** One-tap emergency feature.
-* **Evidence Export:** Securely export files and logs.
-* **Background Event Logging:** Monitor selected activities in the background.
+### 🔐 Privacy & Compliance
+- NO cloud data collection without user consent
+- Local-first architecture
+- GDPR & privacy regulation compliant
+- Data extraction rules configured
+- Tamper detection & integrity checking
 
----
+## 📋 Architecture
 
-### **3. Technical Architecture**
+Guardian Trace follows **Clean Architecture** with **MVVM** pattern:
 
-* **Language:** Kotlin
-* **UI:** Jetpack Compose
-* **Architecture:** MVVM + Clean Architecture
-* **Data Storage:** Encrypted Room Database
-* **Layers:**
-    * **Data Layer:** Room, Data Sources, DTOs
-    * **Domain Layer:** Use Cases, Models
-    * **Presentation Layer:** ViewModel, State, StateConverter, Composables
-* **Dependency Injection:** Hilt or Koin
-* Ensures the **ViewModel never accesses the UI directly**.
+```
+┌─────────────────────────────────────────────────┐
+│         Presentation Layer (Jetpack Compose)    │
+│  ├─ UI Screens (Auth, Home, Incident, Export)  │
+│  ├─ ViewModels with StateFlow                   │
+│  └─ Navigation & Routing                        │
+├─────────────────────────────────────────────────┤
+│         Domain Layer (Business Logic)           │
+│  ├─ Use Cases                                   │
+│  ├─ Repository Interfaces                       │
+│  └─ Domain Models                               │
+├─────────────────────────────────────────────────┤
+│           Data Layer (Storage & APIs)           │
+│  ├─ Room Database (SQLCipher encrypted)         │
+│  ├─ Repositories Implementation                 │
+│  ├─ Encryption Manager (AES-256-GCM)            │
+│  ├─ Security Utilities                          │
+│  └─ Local Data Sources                          │
+└─────────────────────────────────────────────────┘
+```
 
----
+### Technology Stack
+- **Language**: Kotlin 2.0.21
+- **UI Framework**: Jetpack Compose with Material 3
+- **Architecture**: MVVM + Clean Architecture
+- **DI**: Hilt (Dagger 2)
+- **Database**: Room 2.6.1 + SQLCipher 4.5.4
+- **Encryption**: AES-256-GCM (AndroidKeyStore) + PBKDF2
+- **Async**: Kotlin Coroutines + Flow
+- **Compilation**: KSP (Kotlin Symbol Processing)
 
-### **4. UI/UX Design**
+## 🔧 Installation & Setup
 
-* Create wireframes for:
-    * Home
-    * Capture Screen
-    * Evidence List
-    * Evidence Details
-    * Settings
-    * SOS & Stealth Mode
-* Prioritize a **minimalist** and **discreet** interface.
-* Ensure accessibility and fast emergency navigation.
+### Prerequisites
+- Android Studio Hedgehog or later
+- JDK 17+
+- Android SDK 36 (Target API)
+- Minimum API Level 26
 
----
+### Clone & Setup
 
-### **5. Security Layer**
+```bash
+git clone https://github.com/yourusername/GuardianTrace.git
+cd GuardianTrace
 
-* Full database encryption for stored evidence.
-* Secure export handling (metadata, tamper-proof logs).
-* Configurable stealth behaviors.
-* Optional PIN or biometric access.
+# Build project
+./gradlew build
 
----
+# Run on device/emulator
+./gradlew installDebug
+```
 
-### **6. Development Workflow**
+### First Launch
+1. Set a 4-8 digit PIN for authentication
+2. (Optional) Enable biometric authentication
+3. Grant required permissions:
+   - Camera (for evidence capture)
+   - Microphone (for audio recording)
+   - Location (for incident tracking)
+   - Contacts (for emergency contacts)
 
-1. Initialize Kotlin + Compose project.
-2. Create modular architecture (data, domain, presentation).
-3. Implement encrypted Room + repositories.
-4. Build feature modules incrementally.
-5. Apply Google best practices and Clean Code principles consistently.
-6. Add dependency injection.
-7. Integrate security and stealth functionalities.
+## 🔐 Security Baseline
 
----
-
-### **7. Testing & Validation**
-
-* Unit tests for ViewModels and Use Cases.
-* Integration tests for Room and repositories.
-* UI tests in Jetpack Compose.
-* Security validation: encryption, export integrity, emergency flows.
-
----
-
-### **8. Future Improvements**
-
-* Cloud backup with user-controlled encryption keys.
-* AI-powered threat detection alert.
-* Multi-device sync.
-* Legal report generator.
-
----
-
-## **App Screenshots**
-
-<div style="display: flex; flex-direction: column; gap: 20px;">
+### Encryption Standards
+- **Database**: SQLCipher with AES encryption + PBKDF2 (100,000 iterations)
+- **In-Transit**: TLS 1.3 minimum (via network security config)
+- **At-Rest**: AES-256-GCM for all sensitive files
+- **Keys**: Hardware-backed AndroidKeyStore (API 26+)
 
 ### Authentication
-<img src="assets/screens/auth.png" width="300" alt="Authentication Screen"/>
+- PIN-based access control (PBKDF2-SHA256)
+- Biometric authentication (Fingerprint/Face)
+- Constant-time comparison to prevent timing attacks
+- Automatic session management
 
-### Home
+### Runtime Protection
+- **Debugger Detection**: Prevents analysis on rooted devices
+- **Root/Jailbreak Detection**: Runtime integrity checks
+- **Certificate Pinning**: Network security policy configured
+- **Memory Clearing**: Sensitive data zeroed after use
+- **Frida Detection**: Anti-tampering measures
 
-<img src="assets/screens/home.png" width="300" alt="Home Screen"/>
+## 📚 Documentation
 
-### Emergency Contacts
+For detailed documentation, see:
+- [SECURITY.md](./SECURITY.md) - Security policy and disclosure
+- [ARCHITECTURE.md](./docs/ARCHITECTURE.md) - Detailed architecture guide
+- [API_REFERENCE.md](./docs/API_REFERENCE.md) - Component API reference
+- [CONTRIBUTING.md](./CONTRIBUTING.md) - Contribution guidelines
 
-<img src="assets/screens/emergency%20contacts.png" width="300" alt="Emergency Contacts Screen"/>
+## 🧪 Testing
 
-### Export Data
+### Run Tests
+```bash
+# Unit tests
+./gradlew test
 
-<img src="assets/screens/exportData.png" width="300" alt="Export Data Screen"/>
-<img src="assets/screens/exportData%20%282%29.png" width="300" alt="Export Data Details"/>
+# Instrumented tests
+./gradlew connectedAndroidTest
 
-### New Incident
+# Lint checks
+./gradlew lint
+```
 
-<img src="assets/screens/new%20incident.png" width="300" alt="New Incident Screen"/>
+### Test Coverage
+- Unit tests for ViewModels and Use Cases
+- Integration tests for Room + repositories
+- UI tests for Compose screens
+- Security validation tests
 
-### Settings
+## 📦 Build & Release
 
-<img src="assets/screens/settings.png" width="300" alt="Settings Screen"/>
-<img src="assets/screens/settings%20%282%29.png" width="300" alt="Settings Details"/>
+### Debug Build
+```bash
+./gradlew assembleDebug
+```
 
-### Incident Details
-<img src="assets/screens/incident%20details.png" width="300" alt="Incident Details Screen"/>
+### Release Build
+```bash
+./gradlew assembleRelease
+```
 
-</div>
+**Note**: Release builds include:
+- ProGuard obfuscation
+- Resource shrinking
+- Signing with release keystore
+- Security hardening
+
+## 🛠️ Development Workflow
+
+### Branch Naming
+- `feature/*` - New features
+- `fix/*` - Bug fixes
+- `security/*` - Security patches
+- `docs/*` - Documentation
+
+### Commit Standards
+Follow conventional commits:
+```
+feat(auth): implement PIN authentication
+fix(encryption): resolve SQLCipher key rotation
+security(crypto): add timing attack prevention
+docs(readme): update installation instructions
+```
+
+### Code Quality
+- Kotlin style guide compliance (Ktlint)
+- Static analysis (Lint + Detekt)
+- Security scanning (Dependency Check)
+- Code review required before merge
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see [LICENSE](./LICENSE) file for details.
+
+## 🔒 Security Disclosure
+
+**If you discover a security vulnerability, please DO NOT open a public issue.** 
+
+Instead, please report it to: `security@example.com`
+
+See [SECURITY.md](./SECURITY.md) for full disclosure policy and supported versions.
+
+## 🙋 Support & Contribution
+
+### Report an Issue
+- [GitHub Issues](https://github.com/yourusername/GuardianTrace/issues)
+- Please include: device, Android version, reproduction steps, expected vs actual behavior
+
+### Contribute Code
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed contribution guidelines.
+
+## 🗺️ Roadmap
+
+### Version 1.1 (Q2 2025)
+- [ ] Cloud backup with user-controlled encryption keys
+- [ ] Enhanced emergency contact system
+- [ ] Export to legal report format (PDF)
+
+### Version 1.2 (Q3 2025)
+- [ ] AI-powered threat detection
+- [ ] Multi-device sync
+- [ ] Advanced analytics dashboard
+
+### Version 2.0 (Q4 2025)
+- [ ] Desktop companion app
+- [ ] Legal integration (direct filing)
+- [ ] Blockchain verification
+
+## 👥 Authors
+
+- **Developer**: Your Name (@github)
+
+## 🙏 Acknowledgments
+
+- Inspired by user safety and privacy concerns
+- Built with security best practices from OWASP, NIST, and Google
+- Thanks to all contributors and testers
+
+---
+
+**Disclaimer**: Guardian Trace is a tool for recording evidence. Users are responsible for complying with local laws regarding recording and privacy. Always consult legal counsel before using evidence in proceedings.
+
