@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.ksp)
+    id("jacoco")
 }
 
 android {
@@ -12,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.guardiantrace"
-        minSdk = 26 // Mudei para 26 por causa de recursos de segurança
+        minSdk = 26
         targetSdk = 36
         versionCode = 1
         versionName = "1.0.0"
@@ -22,13 +23,12 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+    }
 
-        // Configuração para Room
-        ksp {
-            arg("room.schemaLocation", "$projectDir/schemas")
-            arg("room.incremental", "true")
-            arg("room.expandProjection", "true")
-        }
+    ksp {
+        arg("room.schemaLocation", "$projectDir/schemas")
+        arg("room.incremental", "true")
+        arg("room.expandProjection", "true")
     }
 
     buildTypes {
@@ -39,8 +39,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-
-            // Segurança adicional
             buildConfigField("Boolean", "ENABLE_LOGGING", "false")
         }
         debug {
@@ -138,4 +136,43 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+}
+
+// Jacoco configuration for test coverage reports
+jacoco {
+    version = "0.8.8"
+}
+
+tasks.register("jacocoTestReport") {
+    dependsOn("testDebugUnitTest")
+
+    doLast {
+        val buildDir = layout.buildDirectory.get().asFile
+        val excludeFiles = setOf(
+            "**/R.class",
+            "**/R$*.class",
+            "**/BuildConfig.*",
+            "**/Manifest*.*",
+            "**/*_MembersInjector.class",
+            "**/*_Factory.class",
+            "**/*_Provide*.class",
+            "**/*Module_*.class",
+            "**/*Hilt_*.class",
+            "**/*Generated*.class"
+        )
+
+        val sourceDirectories = files(
+            "${project.projectDir}/src/main/java",
+            "${project.projectDir}/src/main/kotlin"
+        )
+
+        val classDirectories = files(
+            "$buildDir/intermediates/classes/debug",
+            "$buildDir/intermediates/javac/debug/classes"
+        )
+
+        val executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
+
+        println("Jacoco report generated: $buildDir/reports/jacoco/")
+    }
 }
