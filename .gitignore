@@ -1,15 +1,251 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+# ==============================================
+# SECRETS & CREDENTIALS
+# ==============================================
+# Local properties with SDK path
 local.properties
+local.*.properties
+
+# Keystore files (signing keys)
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.key
+
+# Google Services (Firebase, GCP)
+google-services.json
+google-services.*.json
+
+# API Keys and credentials
+/keys/
+/secrets/
+*.secret
+*.env
+.env*
+!.env.example
+
+# AWS, Firebase credentials
+aws-credentials.txt
+firebase-*.json
+
+# Gradle properties with credentials
+gradle.properties.bak
+gradle*.backup
+
+# ==============================================
+# BUILD OUTPUT & INTERMEDIATES
+# ==============================================
+/build/
+/*/build/
+/.gradle/
+.gradle/
+
+# Build directories
+bin/
+gen/
+out/
+
+# Gradle generated files
+gradle-app.setting
+
+# ==============================================
+# IDE & EDITOR
+# ==============================================
+# Android Studio / IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+*.swp
+*.swo
+*~
+.vscode/
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Eclipse
+.classpath
+.project
+.settings/
+.metadata/
+
+# NetBeans
+nbproject/
+private/
+dist/
+build/
+
+# ==============================================
+# TEST & COVERAGE
+# ==============================================
+/coverage/
+*.coverage
+*.gcda
+*.gcno
+.jacoco*/
+
+# Test reports
+test-results/
+junit-*.xml
+jacoco*.exec
+jacoco*.html
+
+# ==============================================
+# DEPENDENCY CACHES
+# ==============================================
+/gradlew
+/gradlew.bat
+.gradle/
+
+# Maven
+.m2/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.asc
+
+# npm/Node (if used)
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# ==============================================
+# NATIVE BUILD
+# ==============================================
+# C++ / NDK
+.cxx/
+*.o
+*.a
+*.so
+
+# ==============================================
+# LOGS & TEMP FILES
+# ==============================================
+*.log
+*.logs
+logs/
+*.tmp
+*.bak
+~*
+.~*
+
+# ==============================================
+# OS-SPECIFIC
+# ==============================================
+# macOS
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+
+# ==============================================
+# DEVICE/EMULATOR
+# ==============================================
+# Android devices
+*.apk
+*.aab
+*.dex
+
+# Emulator snapshots
+*.snapshot
+
+# ==============================================
+# DOCUMENTATION GENERATED
+# ==============================================
+/docs/generated/
+/docs/_build/
+/docs/build/
+
+# ==============================================
+# PROJECT-SPECIFIC (Guardian Trace)
+# ==============================================
+# Export files
+/exports/
+*.zip
+*.tar.gz
+
+# Database files (local test data)
+*.db
+*.sqlite
+*.sqlite3
+*.realm
+
+# Captured evidence (test)
+/test-data/
+/evidence-backup/
+
+# Schema files (but keep in git for versioning)
+!/schemas/
+
+# ==============================================
+# SENSITIVE DATA
+# ==============================================
+# Private keys
+*.pem
+*.pub
+id_rsa
+id_dsa
+id_ecdsa
+
+# SSH keys
+.ssh/
+
+# GPG keys
+.gnupg/
+
+# ==============================================
+# GITHUB ACTIONS
+# ==============================================
+.github/workflows/*.log
+
+# ==============================================
+# GRADLE & KOTLIN
+# ==============================================
+.kotlin/
+kotlin-build/
+
+# ==============================================
+# DETEKT & LINTING
+# ==============================================
+build/reports/detekt/
+detekt-baseline.xml
+
+# ==============================================
+# SECURITY SCANNING TOOLS
+# ==============================================
+# OWASP Dependency Check
+reports/
+dependency-check-report.*
+
+# SonarQube
+.sonarqube/
+.sonar/
+
+# ==============================================
+# MISC
+# ==============================================
+# Temporary IDE files
+.java-version
+.ruby-version
+.python-version
+
+# VS Code extensions
+.vscode/extensions.json
+
+# Android Profiler
+profiler-*.txt
+
+# Device file
+device.properties
+
